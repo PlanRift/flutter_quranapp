@@ -13,7 +13,24 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AyahViewModel _viewModel = AyahViewModel();
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: FutureBuilder(
+            future: _viewModel.getListAyah(id_surah),
+            builder: (context, AsyncSnapshot<AyahModel?> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text('Loading...');
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else if (snapshot.hasData) {
+                // Assuming the Ayah list is not empty
+                String surahName = snapshot.data!.namaLatin!.toString();
+                return Text('Surah $surahName');
+              } else {
+                return Text('Surah');
+              }
+            },
+          ),
+        ),
         body: FutureBuilder(
           future: _viewModel.getListAyah(id_surah),
           builder: (context, AsyncSnapshot<AyahModel?> snapshot) {

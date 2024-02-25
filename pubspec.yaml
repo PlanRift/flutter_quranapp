@@ -13,6 +13,7 @@ dependencies:
   flutter_svg: ^2.0.9
   google_fonts: ^6.1.0
   http: ^1.2.0
+  easy_search_bar: ^2.5.0
 
 dev_dependencies:
   flutter_test:

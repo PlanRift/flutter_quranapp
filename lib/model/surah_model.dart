@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 List<Surah> surahFromJson(String str) =>
-List<Surah>.from(json.decode(str).map((x) => Surah.fromJson(x)));
+    List<Surah>.from(json.decode(str).map((x) => Surah.fromJson(x)));
 
 class Surah {
   int nomor;
@@ -25,13 +25,12 @@ class Surah {
   });
 
   factory Surah.fromJson(Map<String, dynamic> json) => Surah(
-    nomor: json['nomor'],
-    jumlah_ayat: json['jumlah_ayat'],
-    nama: json['nama'],
-    nama_latin: json['nama_latin'],
-    tempat_turun: json['tempat_turun'],
-    arti: json['arti'],
-    deskripsi: json['deskripsi'],
-    audio: json['audio']
-  );
+      nomor: json['nomor'],
+      jumlah_ayat: json['jumlah_ayat'],
+      nama: json['nama'],
+      nama_latin: json['nama_latin'],
+      tempat_turun: json['tempat_turun'],
+      arti: json['arti'],
+      deskripsi: json['deskripsi'],
+      audio: json['audio']);
 }
