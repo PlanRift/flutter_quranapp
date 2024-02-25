@@ -13,7 +13,11 @@ import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = 'home_screen';
-  const HomeScreen({super.key});
+  final String? lastReadSurah;
+  final String? lastReadAyat;
+  const HomeScreen(
+      {Key? key, required this.lastReadAyat, required this.lastReadSurah})
+      : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -69,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               .firstWhere((surah) => surah.nama_latin == value);
 
           // Now you can use selectedSurah.nomor.toString() or any other property
+          // ignore: use_build_context_synchronously
           Navigator.pushNamed(
             context,
             DetailScreen.routeName,
@@ -173,22 +178,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 20,
                     ),
                     Text(
-                      "Al-Fatihah",
+                      widget.lastReadSurah ?? 'Not Assigned',
                       style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
                     ),
                     const SizedBox(
                       height: 1,
                     ),
                     Text(
-                      "Ayat No: 1",
+                      "Ayat: ${widget.lastReadAyat ?? 'Not Assigned'}",
                       style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    )
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                      ),
+                    ),
                   ],
                 ),
               )
