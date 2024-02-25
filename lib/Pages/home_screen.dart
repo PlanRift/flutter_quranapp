@@ -77,7 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pushNamed(
             context,
             DetailScreen.routeName,
-            arguments: selectedSurah.nomor.toString(),
+            arguments: {
+              'id_surah': selectedSurah.nomor.toString(),
+            'nama_surah': selectedSurah.nama_latin.toString()
+            },
           );
         },
       );
