@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _suggestions.clear(); // Clear previous suggestions
     _suggestions.addAll(jsonList.map((json) => Surah.fromJson(json)));
-
+ 
     return _suggestions.where((element) {
       return element.nama_latin
           .toLowerCase()
@@ -68,18 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
           return suggestions.map((surah) => surah.nama_latin).toList();
         },
         onSuggestionTap: (value) async {
-          // Find the Surah object with matching nama_latin
           Surah selectedSurah = (await _fetchSuggestions(value))
               .firstWhere((surah) => surah.nama_latin == value);
-
-          // Now you can use selectedSurah.nomor.toString() or any other property
           // ignore: use_build_context_synchronously
           Navigator.pushNamed(
             context,
             DetailScreen.routeName,
             arguments: {
               'id_surah': selectedSurah.nomor.toString(),
-            'nama_surah': selectedSurah.nama_latin.toString()
+              'nama_surah': selectedSurah.nama_latin.toString()
             },
           );
         },
